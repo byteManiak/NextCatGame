@@ -11,7 +11,7 @@ else
 endif
 
 OUT_DIR ?= build
-OBJ_DIR = $(OUT_DIR)/obj
+OBJ_DIR := $(OUT_DIR)/obj
 OUT_BIN := $(OUT_DIR)/NextCatGame
 
 SOURCES := \
