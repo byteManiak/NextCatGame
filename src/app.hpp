@@ -5,13 +5,13 @@
 #include "video.hpp"
 #include "input.hpp"
 
-namespace didi
+namespace dd
 {
 	class App
 	{
 	private:
-		video::State* videoState = new video::State();
-		input::SDLEventHandler* sdlEventHandler = new input::SDLEventHandler();
+		VideoState* videoState = new VideoState();
+		SDLEventHandler* sdlEventHandler = new SDLEventHandler();
 		u64 ticks = 0;
 
 		bool quit = false;

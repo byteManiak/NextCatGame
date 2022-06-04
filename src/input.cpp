@@ -1,6 +1,6 @@
 #include "input.hpp"
 
-namespace didi::input
+namespace dd
 {
 	void SDLEventHandler::Handle(bool *quit)
 	{

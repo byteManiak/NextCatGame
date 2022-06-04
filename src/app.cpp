@@ -1,6 +1,6 @@
 #include "app.hpp"
 
-namespace didi
+namespace dd
 {
 	i32 App::Init()
 	{

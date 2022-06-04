@@ -3,7 +3,7 @@
 
 #include <SDL_events.h>
 
-namespace didi::input
+namespace dd
 {
 	class SDLEventHandler
 	{

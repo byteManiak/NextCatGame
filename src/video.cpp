@@ -1,9 +1,9 @@
 #include "video.hpp"
 
 
-namespace didi::video
+namespace dd
 {
-	i32 State::InitWindowAndRenderer()
+	i32 VideoState::InitWindowAndRenderer()
 	{
 		SDL_Window* newWindow = SDL_CreateWindow(
 			"NextCatGame",
@@ -31,12 +31,12 @@ namespace didi::video
 		return 0;
 	}
 
-	i32 State::Init()
+	i32 VideoState::Init()
 	{
 		return this->InitWindowAndRenderer();
 	}
 
-	void State::Update(u64 ticks)
+	void VideoState::Update(u64 ticks)
 	{
 		if (ticks - this->lastUpdated > (1000 / this->maxFps))
 		{
@@ -60,7 +60,7 @@ namespace didi::video
 		}
 	}
 
-	void State::Teardown()
+	void VideoState::Teardown()
 	{
 		SDL_DestroyRenderer(this->renderer);
 		SDL_DestroyWindow(this->window);

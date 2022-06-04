@@ -4,9 +4,9 @@
 #include <SDL_render.h>
 #include "common.hpp"
 
-namespace didi::video
+namespace dd
 {
-	class State
+	class VideoState
 	{
 	private:
 		SDL_Window* window = nullptr;
