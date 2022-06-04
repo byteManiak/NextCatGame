@@ -2,6 +2,7 @@
 #define INPUT_HPP
 
 #include <SDL_events.h>
+#include "common.hpp"
 
 namespace dd
 {
@@ -11,7 +12,7 @@ namespace dd
 		SDL_Event event;
 
 	public:
-		void Handle(bool*);
+		i32 Handle();
 	};
 }
 

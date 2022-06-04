@@ -36,7 +36,7 @@ namespace dd
 		return this->InitWindowAndRenderer();
 	}
 
-	void VideoState::Update(u64 ticks)
+	i32 VideoState::Update(u64 ticks)
 	{
 		if (ticks - this->lastUpdated > (1000 / this->maxFps))
 		{
@@ -58,6 +58,8 @@ namespace dd
 			SDL_RenderPresent(renderer);
 			this->lastUpdated = ticks;
 		}
+
+		return 0;
 	}
 
 	void VideoState::Teardown()

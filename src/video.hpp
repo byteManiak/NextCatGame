@@ -17,7 +17,7 @@ namespace dd
 	public:
 		const u8 maxFps = 30;
 		i32 Init();
-		void Update(u64);
+		i32 Update(u64);
 		void Teardown();
 	};
 }

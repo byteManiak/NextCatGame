@@ -30,20 +30,32 @@ namespace dd
 			return 1;
 		}
 
+		i32 inputResult;
+		i32 outputResult;
+		i32 exitCode = 0;
+
 		while (true)
 		{
 			this->ticks = SDL_GetTicks64();
-			this->sdlEventHandler->Handle(&quit);
-
-			if (this->quit)
+			inputResult = this->sdlEventHandler->Handle();
+			if (inputResult != 0)
 			{
+				if (inputResult != 1)
+				{
+					exitCode = 2;
+				}
 				break;
 			}
 
-			this->videoState->Update(this->ticks);
+			outputResult = this->videoState->Update(this->ticks);
+			if (outputResult != 0)
+			{
+				exitCode = 3;
+				break;
+			}
 		}
 
 		this->Teardown();
-		return 0;
+		return exitCode;
 	}
 }
