@@ -2,7 +2,7 @@
 
 namespace dd
 {
-	i32 VideoState::InitWindowAndRenderer()
+	VideoInitError VideoState::InitWindowAndRenderer()
 	{
 		SDL_Window* newWindow = SDL_CreateWindow(
 			"NextCatGame",
@@ -15,22 +15,22 @@ namespace dd
 
 		if (!newWindow)
 		{
-			return 1;
+			return VIDEO_INIT_CREATE_WINDOW;
 		}
 
 		SDL_Renderer* newRenderer = SDL_CreateRenderer(newWindow, -1, SDL_RENDERER_ACCELERATED);
 
 		if (!newRenderer)
 		{
-			return 2;
+			return VIDEO_INIT_CREATE_RENDERER;
 		}
 
 		this->window = newWindow;
 		this->renderer = newRenderer;
-		return 0;
+		return VIDEO_INIT_NO_ERROR;
 	}
 
-	i32 VideoState::Init()
+	VideoInitError VideoState::Init()
 	{
 		return this->InitWindowAndRenderer();
 	}

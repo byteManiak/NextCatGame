@@ -9,7 +9,7 @@ namespace dd
 			return APP_EXIT_SDL_INIT_ERROR;
 		}
 
-		if (this->videoState->Init())
+		if (this->videoState->Init() != VIDEO_INIT_NO_ERROR)
 		{
 			return APP_EXIT_VIDEO_INIT_ERROR;
 		}
