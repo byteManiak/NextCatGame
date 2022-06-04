@@ -1,8 +1,6 @@
-#ifndef VIDEO_HPP
-#define VIDEO_HPP
-
+#pragma once
 #include <SDL_render.h>
-#include "common.hpp"
+#include "common.h"
 
 namespace dd
 {
@@ -21,5 +19,3 @@ namespace dd
 		void Teardown();
 	};
 }
-
-#endif

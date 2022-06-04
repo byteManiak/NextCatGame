@@ -1,4 +1,4 @@
-#include "app.hpp"
+#include "app.h"
 
 i32 main(i32 argc, char** argv)
 {

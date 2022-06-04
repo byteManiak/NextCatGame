@@ -1,9 +1,8 @@
-#ifndef APP_HPP
-#define APP_HPP
+#pragma once
 
 #include <SDL.h>
-#include "video.hpp"
-#include "input.hpp"
+#include "video.h"
+#include "input.h"
 
 namespace dd
 {
@@ -22,6 +21,3 @@ namespace dd
 		i32 Run(i32, char**);
 	};
 }
-
-
-#endif

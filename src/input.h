@@ -1,8 +1,7 @@
-#ifndef INPUT_HPP
-#define INPUT_HPP
+#pragma once
 
 #include <SDL_events.h>
-#include "common.hpp"
+#include "common.h"
 
 namespace dd
 {
@@ -15,5 +14,3 @@ namespace dd
 		i32 Handle();
 	};
 }
-
-#endif
