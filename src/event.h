@@ -20,7 +20,7 @@ namespace dd
 	class EventHandler
 	{
 	private:
-		static std::unordered_map<SDL_EventType, std::vector<std::function<void(SDL_Event)>>> eventListeners;
+		static unordered_map<SDL_EventType, vector<function<void(SDL_Event)>>> eventListeners;
 
 	public:
 		static void AddEventListener(EventObject *object, SDL_EventType eventType);
