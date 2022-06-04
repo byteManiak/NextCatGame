@@ -3,19 +3,16 @@
 
 #include <SDL_events.h>
 
-namespace didi
+namespace didi::input
 {
-	namespace input
+	class SDLEventHandler
 	{
-		class SDLEventHandler
-		{
-		private:
-			SDL_Event event;
+	private:
+		SDL_Event event;
 
-		public:
-			void Handle(bool*);
-		};
-	}
+	public:
+		void Handle(bool*);
+	};
 }
 
 #endif

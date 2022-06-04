@@ -1,21 +1,18 @@
 #include "input.hpp"
 
-namespace didi
+namespace didi::input
 {
-	namespace input
+	void SDLEventHandler::Handle(bool *quit)
 	{
-		void SDLEventHandler::Handle(bool *quit)
+		while (SDL_PollEvent(&this->event))
 		{
-			while (SDL_PollEvent(&this->event))
+			switch (this->event.type)
 			{
-				switch (this->event.type)
-				{
-					case SDL_QUIT:
-						*quit = true;
-						break;
-					default:
-						break;
-				}
+				case SDL_QUIT:
+					*quit = true;
+					break;
+				default:
+					break;
 			}
 		}
 	}
