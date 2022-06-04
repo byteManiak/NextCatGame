@@ -6,6 +6,17 @@
 
 namespace dd
 {
+	enum AppExitReason {
+		APP_EXIT_NO_ERROR = 0,
+		/* Errors during initialization */
+		APP_EXIT_SDL_INIT_ERROR,
+		APP_EXIT_VIDEO_INIT_ERROR,
+		/* Events triggering game exit */
+		APP_EXIT_WINDOW_CLOSED,
+
+		APP_EXIT_UNDEFINED
+	};
+
 	class App
 	{
 	private:
@@ -14,10 +25,10 @@ namespace dd
 		u64 ticks = 0;
 
 		bool quit = false;
-		i32 Init();
+		AppExitReason Init();
 		void Teardown();
 
 	public:
-		i32 Run(i32, char**);
+		AppExitReason Run(i32, char**);
 	};
 }

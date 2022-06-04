@@ -2,19 +2,19 @@
 
 namespace dd
 {
-	i32 App::Init()
+	AppExitReason App::Init()
 	{
 		if (SDL_Init(SDL_INIT_EVERYTHING))
 		{
-			return 1;
+			return APP_EXIT_SDL_INIT_ERROR;
 		}
 
 		if (this->videoState->Init())
 		{
-			return 2;
+			return APP_EXIT_VIDEO_INIT_ERROR;
 		}
 
-		return 0;
+		return APP_EXIT_NO_ERROR;
 	}
 
 	void App::Teardown()
@@ -23,16 +23,13 @@ namespace dd
 		SDL_Quit();
 	}
 
-	i32 App::Run(i32 argc, char **argv)
+	AppExitReason App::Run(i32 argc, char **argv)
 	{
-		if (this->Init())
-		{
-			return 1;
-		}
+		AppExitReason exitReason = this->Init();
+		if (exitReason != APP_EXIT_NO_ERROR) return exitReason;
 
 		i32 inputResult;
 		i32 outputResult;
-		i32 exitCode = 0;
 
 		while (true)
 		{
@@ -42,7 +39,7 @@ namespace dd
 			{
 				if (inputResult != 1)
 				{
-					exitCode = 2;
+					exitReason = APP_EXIT_WINDOW_CLOSED;
 				}
 				break;
 			}
@@ -50,12 +47,12 @@ namespace dd
 			outputResult = this->videoState->Update(this->ticks);
 			if (outputResult != 0)
 			{
-				exitCode = 3;
+				exitReason = APP_EXIT_UNDEFINED;
 				break;
 			}
 		}
 
 		this->Teardown();
-		return exitCode;
+		return exitReason;
 	}
 }
