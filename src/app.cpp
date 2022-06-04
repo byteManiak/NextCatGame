@@ -9,7 +9,7 @@ namespace dd
 			return APP_EXIT_SDL_INIT_ERROR;
 		}
 
-		if (this->videoState->Init() != VIDEO_INIT_NO_ERROR)
+		if (this->videoState->Init() != VIDEO_INIT_OK)
 		{
 			return APP_EXIT_VIDEO_INIT_ERROR;
 		}
@@ -34,20 +34,20 @@ namespace dd
 		while (true)
 		{
 			this->ticks = SDL_GetTicks64();
-			inputResult = this->sdlEventHandler->Handle();
-			if (inputResult != 0)
+			inputResult = this->inputHandler->Handle();
+			if (inputResult != INPUT_HANDLER_RESULT_CONTINUE)
 			{
-				if (inputResult != 1)
+				if (inputResult != INPUT_HANDLER_RESULT_QUIT)
 				{
-					exitReason = APP_EXIT_UNDEFINED;
+					exitReason = APP_EXIT_IO_ERROR;
 				}
 				break;
 			}
 
-			outputResult = this->videoState->Update(this->ticks);
+			outputResult = this->videoState->Update(this->ticks, this->inputHandler);
 			if (outputResult != 0)
 			{
-				exitReason = APP_EXIT_UNDEFINED;
+				exitReason = APP_EXIT_IO_ERROR;
 				break;
 			}
 		}
