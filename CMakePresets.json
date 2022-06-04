@@ -107,6 +107,6 @@
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release"
             }
-        },
+        }
     ]
 }
