@@ -22,6 +22,7 @@ namespace dd
 
 		if (!newRenderer)
 		{
+			SDL_DestroyWindow(newWindow);
 			return VIDEO_INIT_CREATE_RENDERER;
 		}
 

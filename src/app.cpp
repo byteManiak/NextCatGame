@@ -39,7 +39,7 @@ namespace dd
 			{
 				if (inputResult != 1)
 				{
-					exitReason = APP_EXIT_WINDOW_CLOSED;
+					exitReason = APP_EXIT_UNDEFINED;
 				}
 				break;
 			}
