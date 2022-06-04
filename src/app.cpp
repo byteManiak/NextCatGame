@@ -33,6 +33,8 @@ namespace dd
 
 		while (true)
 		{
+			EventHandler::Handle();
+
 			this->ticks = SDL_GetTicks64();
 			inputResult = this->inputHandler->Handle();
 			if (inputResult != INPUT_HANDLER_RESULT_CONTINUE)

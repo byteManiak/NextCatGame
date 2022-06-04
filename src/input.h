@@ -2,6 +2,7 @@
 
 #include <SDL_events.h>
 #include "common.h"
+#include "event.h"
 
 namespace dd
 {
@@ -10,12 +11,15 @@ namespace dd
 		INPUT_HANDLER_RESULT_QUIT,
 	};
 
-	class InputHandler
+	class InputHandler : public EventObject
 	{
 	private:
-		SDL_Event event;
+		InputHandlerResult handlerResult;
 
 	public:
+		InputHandler();
+		void OnEvent(SDL_Event event);
+
 		SDL_FPoint pointerLocation;
 		bool IsPointerInWindow(i32, i32);
 		i32 SetCaptureMouse(bool);
