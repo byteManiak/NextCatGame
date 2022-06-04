@@ -2,6 +2,13 @@ ifndef BUILD
  BUILD := debug
 endif
 
+ifdef OS
+	include Windows.mk
+else
+	ifeq($(shell uname), Linux)
+		include Linux.mk
+endif
+
 ifeq ($(BUILD),debug)
 # CC := g++ -g
  CC := clang++ -g
@@ -12,25 +19,16 @@ else
  $(error Invalid build type. 'make' must be run with either BUILD=debug or BUILD=release.)
 endif
 
-OUT_DIR ?= build
-OBJ_DIR := $(OUT_DIR)/obj
-OUT_BIN := $(OUT_DIR)/NextCatGame
-
-SOURCES := \
-	src/main.cpp
-
-OBJECTS := $(addprefix $(OBJ_DIR)/,$(SOURCES:.cpp=.o))
-
 .DEFAULT_GOAL: $(OUT_BIN)
 all: $(OUT_BIN)
 
 clean:
-	rm -rf $(OUT_DIR)
+	$(RM) $(OUT_DIR)
 
 $(OUT_BIN): $(OBJECTS)
-	@mkdir -p $(OUT_DIR)
+	$(MKDIR) $(OUT_DIR)
 	$(CC) $(OBJECTS) -o $(OUT_BIN)
 
 $(OBJECTS): $(OBJ_DIR)/%.o: %.cpp
-	@mkdir -p $(@D)
+	$(MKDIR) $(@D)
 	$(CC) -o $@ -c $<
