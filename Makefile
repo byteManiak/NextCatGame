@@ -3,9 +3,11 @@ ifndef BUILD
 endif
 
 ifeq ($(BUILD),debug)
- CC := g++ -g
+# CC := g++ -g
+ CC := clang++ -g
 else ifeq ($(BUILD),release)
- CC := g++ -O3
+# CC := g++ -O3
+ CC := clang++ -O3
 else
  $(error Invalid build type. 'make' must be run with either BUILD=debug or BUILD=release.)
 endif

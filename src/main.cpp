@@ -1,4 +1,7 @@
-int main(int argc, char **argv)
+#include "app.hpp"
+
+i32 main(i32 argc, char** argv)
 {
-	return 0;
+	auto app = new didi::App();
+	return app->Run(argc, argv);
 }
