@@ -9,7 +9,6 @@ namespace dd
 {
 	using std::unordered_map;
 	using std::vector;
-	using std::function;
 
 	class EventObject
 	{
@@ -20,7 +19,7 @@ namespace dd
 	class EventHandler
 	{
 	private:
-		static unordered_map<SDL_EventType, vector<function<void(SDL_Event)>>> eventListeners;
+		static unordered_map<SDL_EventType, vector<EventObject*>> eventListeners;
 
 	public:
 		static void AddEventListener(EventObject *object, SDL_EventType eventType);
