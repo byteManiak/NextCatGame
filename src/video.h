@@ -1,4 +1,5 @@
 #pragma once
+
 #include <SDL_render.h>
 #include "common.h"
 #include "input.h"

@@ -1,5 +1,7 @@
 #include "app.h"
+
 #include "log.h"
+
 namespace dd
 {
 	AppExitReason App::Init()

@@ -1,4 +1,5 @@
 #include "video.h"
+
 #include "log.h"
 #include "imgui.h"
 #include "imgui_impl_sdl.h"
