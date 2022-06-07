@@ -1,9 +1,11 @@
 #include "video.h"
+#include "log.h"
 
 namespace dd
 {
 	VideoInitResult VideoState::InitWindowAndRenderer()
 	{
+		Log(LOG_MESSAGE, "Video", "Creating SDL window");
 		SDL_Window* newWindow = SDL_CreateWindow(
 			"NextCatGame",
 			SDL_WINDOWPOS_CENTERED,
@@ -15,13 +17,16 @@ namespace dd
 
 		if (!newWindow)
 		{
+			Log(LOG_ERROR, "Video", "Failed to create SDL window");
 			return VIDEO_INIT_CREATE_WINDOW_ERROR;
 		}
 
+		Log(LOG_MESSAGE, "Video", "Creating SDL renderer");
 		SDL_Renderer* newRenderer = SDL_CreateRenderer(newWindow, -1, SDL_RENDERER_ACCELERATED);
 
 		if (!newRenderer)
 		{
+			Log(LOG_ERROR, "Video", "Failed to create SDL renderer");
 			SDL_DestroyWindow(newWindow);
 			return VIDEO_INIT_CREATE_RENDERER_ERROR;
 		}

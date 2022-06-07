@@ -1,16 +1,20 @@
 #include "app.h"
-
+#include "log.h"
 namespace dd
 {
 	AppExitReason App::Init()
 	{
+		Log(LOG_MESSAGE, "App", "Initializing SDL");
 		if (SDL_Init(SDL_INIT_EVERYTHING))
 		{
+			Log(LOG_ERROR, "App", "Could not initialize SDL");
 			return APP_EXIT_SDL_INIT_ERROR;
 		}
 
+		Log(LOG_MESSAGE, "App", "Initializing graphics");
 		if (this->videoState->Init() != VIDEO_INIT_OK)
 		{
+			Log(LOG_ERROR, "App", "Could not initialize graphics");
 			return APP_EXIT_VIDEO_INIT_ERROR;
 		}
 
