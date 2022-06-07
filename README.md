@@ -2,7 +2,8 @@
 
 ## Setup
 1. Put SDL2 under `deps/` folder in project root. Folder name should be `SDL2`.
-2. Build with CMake.
+2. Put ImGui under `deps/` folder in project root. Folder name should be `imgui`.
+3. Build with CMake.
 
 ### Coding guidelines
 - TABS NOT SPACES
