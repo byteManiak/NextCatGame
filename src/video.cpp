@@ -108,6 +108,10 @@ namespace dd
 
 	void VideoState::Teardown()
 	{
+		ImGui_ImplSDLRenderer_Shutdown();
+		ImGui_ImplSDL2_Shutdown();
+		ImGui::DestroyContext();
+
 		SDL_DestroyRenderer(this->renderer);
 		SDL_DestroyWindow(this->window);
 	}
