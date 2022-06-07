@@ -1,5 +1,8 @@
 #include "video.h"
 #include "log.h"
+#include "imgui.h"
+#include "imgui_impl_sdl.h"
+#include "imgui_impl_sdlrenderer.h"
 
 namespace dd
 {
@@ -34,6 +37,19 @@ namespace dd
 		this->window = newWindow;
 		this->renderer = newRenderer;
 
+		IMGUI_CHECKVERSION();
+		ImGuiContext *context = ImGui::CreateContext();
+		if (!context)
+		{
+			Log(LOG_ERROR, "Video", "Failed to create ImGui context");
+			SDL_DestroyRenderer(newRenderer);
+			SDL_DestroyWindow(newWindow);
+			return VIDEO_INIT_CREATE_IMGUI_CTX_ERROR;
+		}
+
+		ImGui_ImplSDL2_InitForSDLRenderer(this->window, this->renderer);
+		ImGui_ImplSDLRenderer_Init(this->renderer);
+
 		return VIDEO_INIT_OK;
 	}
 
@@ -50,6 +66,10 @@ namespace dd
 		{
 			SDL_SetRenderDrawColor(this->renderer, 0, 0, 0, 0);
 			SDL_RenderClear(this->renderer);
+
+			ImGui_ImplSDLRenderer_NewFrame();
+			ImGui_ImplSDL2_NewFrame();
+			ImGui::NewFrame();
 
 			SDL_SetRenderDrawColor(this->renderer, 0, 0xff, 0xff, 0xff);
 			u64 theTicks = ticks;
@@ -76,6 +96,9 @@ namespace dd
 				SDL_RenderDrawPointF(this->renderer, inputHandler->pointerLocation.x, inputHandler->pointerLocation.y - 1);
 				SDL_RenderDrawPointF(this->renderer, inputHandler->pointerLocation.x, inputHandler->pointerLocation.y + 1);
 			}
+
+			ImGui::Render();
+			ImGui_ImplSDLRenderer_RenderDrawData(ImGui::GetDrawData());
 			SDL_RenderPresent(renderer);
 			this->lastUpdated = ticks;
 		}

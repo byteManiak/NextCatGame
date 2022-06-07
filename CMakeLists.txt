@@ -4,7 +4,9 @@ cmake_minimum_required(VERSION 3.8)
 project(NextCatGame CXX)
 
 include_directories(
-        "${PROJECT_SOURCE_DIR}/deps/SDL2/include"
+        "${PROJECT_SOURCE_DIR}/deps/SDL2/include",
+        "${PROJECT_SOURCE_DIR}/deps/imgui",
+        "${PROJECT_SOURCE_DIR}/deps/imgui/backends"
 )
 
 if (WIN32)
@@ -19,7 +21,11 @@ link_directories(
         "${PROJECT_SOURCE_DIR}/deps/SDL2/lib/${PROJECT_ARCH}"
 )
 
-file (GLOB_RECURSE srcFiles "src/*.cpp")
+file (GLOB srcFiles
+    "src/*.cpp"
+    "deps/imgui/*.cpp"
+    "deps/imgui/backends/imgui_impl_sdl.cpp"
+    "deps/imgui/backends/imgui_impl_sdlrenderer.cpp")
 
 add_executable(NextCatGame ${srcFiles})
 

@@ -1,5 +1,7 @@
 #include "event.h"
 
+#include "imgui_impl_sdl.h"
+
 namespace dd
 {
 	std::unordered_map<SDL_EventType, std::vector<EventObject*>> EventHandler::eventListeners;
@@ -19,6 +21,8 @@ namespace dd
 		SDL_Event event;
 		while (SDL_PollEvent(&event))
 		{
+			ImGui_ImplSDL2_ProcessEvent(&event);
+
 			for (auto &i : eventListeners[(SDL_EventType)event.type]) i->OnEvent(event);
 		}
 	}
