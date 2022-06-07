@@ -48,6 +48,9 @@ namespace dd
 			return VIDEO_INIT_CREATE_IMGUI_CTX_ERROR;
 		}
 
+		ImGuiIO &io = ImGui::GetIO();
+		io.ConfigFlags |= ImGuiConfigFlags_NoMouseCursorChange;
+
 		ImGui_ImplSDL2_InitForSDLRenderer(this->window, this->renderer);
 		ImGui_ImplSDLRenderer_Init(this->renderer);
 
