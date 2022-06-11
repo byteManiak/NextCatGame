@@ -61,6 +61,8 @@ namespace dd
 	{
 		VideoInitResult result = this->InitWindowAndRenderer();
 		SDL_ShowCursor(SDL_DISABLE);
+		texManager = new TextureManager(this->renderer);
+		texManager->LoadTexture("assets/textures/pointer.png", "pointer");
 		return result;
 	}
 
@@ -100,6 +102,8 @@ namespace dd
 				SDL_RenderDrawPointF(this->renderer, inputHandler->pointerLocation.x, inputHandler->pointerLocation.y - 1);
 				SDL_RenderDrawPointF(this->renderer, inputHandler->pointerLocation.x, inputHandler->pointerLocation.y + 1);
 			}
+
+			texManager->DrawTexture("pointer", inputHandler->pointerLocation.x, inputHandler->pointerLocation.y, 64, 35);
 
 			ImGui::Render();
 			ImGui_ImplSDLRenderer_RenderDrawData(ImGui::GetDrawData());

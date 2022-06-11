@@ -3,6 +3,7 @@
 #include <SDL_render.h>
 #include "common.h"
 #include "input.h"
+#include "texture.h"
 
 namespace dd
 {
@@ -24,6 +25,7 @@ namespace dd
 		SDL_Renderer* renderer = nullptr;
 		u64 lastUpdated = 0;
 		VideoInitResult InitWindowAndRenderer();
+		TextureManager *texManager;
 
 	public:
 		const u8 maxFps = 30;
