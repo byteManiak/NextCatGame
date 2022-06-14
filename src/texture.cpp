@@ -1,6 +1,7 @@
 #include "texture.h"
 
 #include <SDL_image.h>
+#include <imgui.h>
 #include "log.h"
 
 namespace dd
@@ -56,6 +57,21 @@ namespace dd
 			const SDL_Rect r = {x, y, w, h};
 			SDL_RenderCopy(this->renderer, t, NULL, &r);
 		}
+
+#if defined(DEBUG)
+		ImGui::Begin((name + "##" + std::to_string(this->debugTextureCounter++)).c_str(), nullptr,
+					  ImGuiWindowFlags_NoBackground |
+					  ImGuiWindowFlags_NoResize |
+					  ImGuiWindowFlags_NoCollapse |
+					  ImGuiWindowFlags_NoInputs |
+					  ImGuiWindowFlags_NoFocusOnAppearing);
+		ImGui::SetWindowPos(ImVec2(x, y - 20));
+		ImGui::SetWindowSize(ImVec2(w, 20));
+		ImGui::End();
+
+		SDL_Rect pos = {x, y, w, h};
+		SDL_RenderDrawRect(this->renderer, &pos);
+#endif
 	}
 
 	void TextureManager::DeleteTexture(std::string name)
@@ -63,4 +79,8 @@ namespace dd
 		delete(this->textures[name]);
 		this->textures.erase(name);
 	}
+
+#if defined(DEBUG)
+	void TextureManager::ResetDebugTextureCounter() { debugTextureCounter = 1; }
+#endif
 }

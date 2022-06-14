@@ -70,6 +70,9 @@ namespace dd
 	{
 		if (ticks - this->lastUpdated > (1000 / this->maxFps))
 		{
+#if defined(DEBUG)
+			texManager->ResetDebugTextureCounter();
+#endif
 			SDL_SetRenderDrawColor(this->renderer, 0, 0, 0, 0);
 			SDL_RenderClear(this->renderer);
 

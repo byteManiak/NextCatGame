@@ -27,6 +27,10 @@ namespace dd
 		SDL_Renderer *renderer;
 		std::unordered_map<std::string, Texture*> textures;
 
+#if defined(DEBUG)
+		uint64_t debugTextureCounter = 1;
+#endif
+
 		/**
 		 * @brief Make a default 2x2 Source engine-style "missing texture"
 		 */
@@ -60,5 +64,18 @@ namespace dd
 		 * @param name Name identifier of the texture
 		 */
 		void DeleteTexture(std::string name);
+
+#if defined(DEBUG)
+		/**
+		 * @brief With a debug build, texture names are highlighted by an
+		 *        ImGui window with the texture's name as the title.
+		 *        In order for ImGui to draw windows with the same title,
+		 *        it needs to append "##X" at the end of each window name,
+		 *        where X is a unique integer >= 1. A counter is held in the
+		 *        texture manager which keeps track of this X value. This is
+		 *        reset on every frame so it does not overflow (unlikely as it may be).
+		 */
+		void ResetDebugTextureCounter();
+#endif
 	};
 }
